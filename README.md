@@ -11,16 +11,22 @@ We recommend you create an *env.sh* file to create the following environment var
 
 echo "Setting env variables"
 
-export AZ_RESOURCE_GROUP=tmp-spring-jdbc-sql-server
-export AZ_DATABASE_NAME=XXXXXX-tmp-spring-jdbc-sql-server
-export AZ_LOCATION=eastus
-export AZ_SQL_SERVER_USERNAME=spring
+export AZ_RESOURCE_GROUP=<unique-resource group name>
+export AZ_DATABASE_NAME=<db name>
+export AZ_REDIS_NAME=<cluster name>
+export AZ_REDIS_SKU=<Enterprise SKU>
+export AZ_LOCATION=<region>
+export AZ_REDIS_URL=$AZ_REDIS_NAME.$AZ_LOCATION.redisenterprise.cache.azure.net
+export AZ_REDIS_PORT=<port>
+export AZ_SQL_SERVER_USERNAME=<username
 export AZ_SQL_SERVER_PASSWORD=XXXXXXXXXXXXXXXXXXX
 export AZ_LOCAL_IP_ADDRESS=$(curl http://whatismyip.akamai.com/)
+export SPRING_DATASOURCE_CLASS=com.microsoft.sqlserver.jdbc.SQLServerDriver
 
-export SPRING_DATASOURCE_URL="jdbc:sqlserver://$AZ_DATABASE_NAME.database.windows.net:1433;database=demo;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
-export SPRING_DATASOURCE_USERNAME=spring@$AZ_DATABASE_NAME
+export SPRING_DATASOURCE_URL="jdbc:sqlserver://$AZ_DATABASE_NAME.database.windows.net:1433;database=$AZ_DATABASE_NAME;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+export SPRING_DATASOURCE_USERNAME=$AZ_SQL_SERVER_USERNAME@$AZ_DATABASE_NAME
 export SPRING_DATASOURCE_PASSWORD=$AZ_SQL_SERVER_PASSWORD
+export SPRING_SMARTCACHE_URL=jdbc:redis://$AZ_REDIS_URL:$AZ_REDIS_PORT
 ```
 
 You will need to set up a unique `AZ_DATABASE_NAME` as well as a correctly secured `AZ_SQL_SERVER_PASSWORD`.
