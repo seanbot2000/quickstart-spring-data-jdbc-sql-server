@@ -6,6 +6,8 @@ echo "-----------------------------------------------------"
 echo "Using environment variables:"
 echo "AZ_RESOURCE_GROUP=$AZ_RESOURCE_GROUP"
 echo "AZ_DATABASE_NAME=$AZ_DATABASE_NAME"
+echo "AZ_REDIS_NAME=$AZ_REDIS_NAME"
+echo "AZ_REDIS_SKU=$AZ_REDIS_SKU"
 echo "AZ_LOCATION=$AZ_LOCATION"
 echo "AZ_SQL_SERVER_USERNAME=$AZ_SQL_SERVER_USERNAME"
 echo "AZ_SQL_SERVER_PASSWORD=$AZ_SQL_SERVER_PASSWORD"
@@ -52,9 +54,24 @@ az sql db create \
     -o tsv
 
 echo "-----------------------------------------------------"
+echo "Configuring Redis Cluster"
+
+az redisenterprise create \
+    --cluster-name $AZ_REDIS_NAME  \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --sku $AZ_REDIS_SKU \
+    --capacity 2 \
+    --client-protocol Plaintext \
+    --clustering-policy EnterpriseCluster \
+    --location eastus \
+    -o tsv
+
+echo "-----------------------------------------------------"
 echo "Resources:"
 echo "AZ_RESOURCE_GROUP=$AZ_RESOURCE_GROUP"
 echo "AZ_DATABASE_NAME=$AZ_DATABASE_NAME"
+echo "AZ_REDIS_NAME=$AZ_REDIS_NAME"
+echo "AZ_REDIS_SKU=$AZ_REDIS_SKU"
 echo "AZ_LOCATION=$AZ_LOCATION"
 echo "AZ_SQL_SERVER_USERNAME=$AZ_SQL_SERVER_USERNAME"
 echo "AZ_SQL_SERVER_PASSWORD=$AZ_SQL_SERVER_PASSWORD"
