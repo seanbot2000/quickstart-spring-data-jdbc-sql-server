@@ -18,7 +18,7 @@ export AZ_REDIS_SKU=<Enterprise SKU>
 export AZ_LOCATION=<region>
 export AZ_REDIS_URL=$AZ_REDIS_NAME.$AZ_LOCATION.redisenterprise.cache.azure.net
 export AZ_REDIS_PORT=<port>
-export AZ_SQL_SERVER_USERNAME=<username
+export AZ_SQL_SERVER_USERNAME=<username>
 export AZ_SQL_SERVER_PASSWORD=XXXXXXXXXXXXXXXXXXX
 export AZ_LOCAL_IP_ADDRESS=$(curl http://whatismyip.akamai.com/)
 export SPRING_DATASOURCE_CLASS=com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -33,6 +33,7 @@ You will need to set up a unique `AZ_DATABASE_NAME` as well as a correctly secur
 
 Once this file is created:
 
+- Use `apt install jq` to add jq support for retrieving response from az commands
 - Use `source env.sh` to set up those environment variables
 - Use `./create-spring-data-jdbc-sql-server.sh` to create your infrastructure
 - Use `./destroy-spring-data-jdbc-sql-server.sh` to delete your infrastructure

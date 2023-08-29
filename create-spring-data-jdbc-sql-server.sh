@@ -66,6 +66,8 @@ az redisenterprise create \
     --location eastus \
     -o tsv
 
+AZ_REDIS_PASSWORD=`az redisenterprise database list-keys --resource-group $AZ_RESOURCE_GROUP --cluster-name $AZ_REDIS_NAME | jq '.primaryKey' --raw-output`
+
 echo "-----------------------------------------------------"
 echo "Resources:"
 echo "AZ_RESOURCE_GROUP=$AZ_RESOURCE_GROUP"
@@ -76,6 +78,8 @@ echo "AZ_LOCATION=$AZ_LOCATION"
 echo "AZ_SQL_SERVER_USERNAME=$AZ_SQL_SERVER_USERNAME"
 echo "AZ_SQL_SERVER_PASSWORD=$AZ_SQL_SERVER_PASSWORD"
 echo "AZ_LOCAL_IP_ADDRESS=$AZ_LOCAL_IP_ADDRESS"
+echo "AZ_REDIS_PASSWORD=$AZ_REDIS_PASSWORD"
 
+echo "Run: export AZ_REDIS_PASSWORD=$AZ_REDIS_PASSWORD from the shell to propogate for the application"
 echo "-----------------------------------------------------"
 
