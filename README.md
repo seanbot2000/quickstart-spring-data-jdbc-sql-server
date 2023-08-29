@@ -1,6 +1,7 @@
-# Sample project for Spring Data JDBC with Azure SQL Database
+# Sample project for Spring Data JDBC with Azure SQL Database, Azure Cache for Redis Enterprise AND Redis Smart Cache
 
 This sample project is used in the [Use Spring Data JDBC with Azure SQL Database](https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-jdbc-with-azure-sql-server/?WT.mc_id=github-microsoftsamples-judubois) Microsoft documentation quickstart.
+It has been modified to additionally stand up a Redis Enterprise Cluster which will be synced with the database using Redis Smart Cache
 
 ## Creating the infrastructure
 
